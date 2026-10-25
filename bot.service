@@ -1,0 +1,14 @@
+# VPS con systemd:  sudo cp bot.service /etc/systemd/system/ && sudo systemctl enable --now bot
+[Unit]
+Description=The Android bot
+After=network-online.target
+
+[Service]
+WorkingDirectory=/opt/the_android
+ExecStart=/opt/the_android/venv/bin/python bot.py
+Restart=always
+RestartSec=5
+EnvironmentFile=/opt/the_android/.env
+
+[Install]
+WantedBy=multi-user.target
